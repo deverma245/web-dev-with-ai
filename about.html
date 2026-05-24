@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var key = "aanya-theme";
+        var theme = localStorage.getItem(key);
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {}
+    })();
+  </script>
   <title>About Aanya | Aanya Sharma</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -30,19 +42,41 @@
 
     <!-- Page links — each <a> points to a different HTML file in this project -->
     <div class="nav__menu" id="nav-menu">
-      <ul class="nav__links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html" class="active">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <div class="nav__menu-inner">
+        <ul class="nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav__theme-toggle" type="button" aria-label="Switch to dark mode">
+          <span class="nav__theme-icon nav__theme-icon--light" aria-hidden="true">🌙</span>
+          <span class="nav__theme-icon nav__theme-icon--dark" aria-hidden="true">☀️</span>
+        </button>
+      </div>
     </div>
   </nav>
 
   <header class="about-header">
+    <div class="about-header__blob" aria-hidden="true"></div>
     <h1 class="about-header__title">About Aanya</h1>
     <p class="about-header__subtitle">Designer. Researcher. Coffee-driven optimist.</p>
   </header>
+
+  <section class="about-stats">
+    <div class="about-stats__item reveal">
+      <p class="about-stats__number"><span data-target="5">0</span>+</p>
+      <p class="about-stats__label">years experience</p>
+    </div>
+    <div class="about-stats__item reveal">
+      <p class="about-stats__number"><span data-target="30">0</span>+</p>
+      <p class="about-stats__label">shipped projects</p>
+    </div>
+    <div class="about-stats__item reveal">
+      <p class="about-stats__number"><span data-target="12">0</span></p>
+      <p class="about-stats__label">awards</p>
+    </div>
+  </section>
 
   <section class="about-bio">
     <div class="about-bio__grid">
@@ -69,7 +103,7 @@
     <h2 class="about-timeline__heading">Career Timeline</h2>
 
     <ol class="about-timeline__list">
-      <li class="about-timeline__entry">
+      <li class="about-timeline__entry reveal">
         <span class="about-timeline__year">2024</span>
         <div class="about-timeline__content">
           <p class="about-timeline__role">Senior UX Designer, Razorpay</p>
@@ -77,7 +111,7 @@
         </div>
       </li>
 
-      <li class="about-timeline__entry">
+      <li class="about-timeline__entry reveal">
         <span class="about-timeline__year">2022</span>
         <div class="about-timeline__content">
           <p class="about-timeline__role">UX Designer, Byju's</p>
@@ -85,7 +119,7 @@
         </div>
       </li>
 
-      <li class="about-timeline__entry">
+      <li class="about-timeline__entry reveal">
         <span class="about-timeline__year">2021</span>
         <div class="about-timeline__content">
           <p class="about-timeline__role">Product Designer, Practo</p>
@@ -93,7 +127,7 @@
         </div>
       </li>
 
-      <li class="about-timeline__entry">
+      <li class="about-timeline__entry reveal">
         <span class="about-timeline__year">2020</span>
         <div class="about-timeline__content">
           <p class="about-timeline__role">Design Intern, Zomato</p>
@@ -105,6 +139,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
+      <div class="footer__accent" aria-hidden="true"></div>
       <div class="footer__columns">
         <div class="footer__brand">
           <p class="footer__name">Aanya Sharma</p>
@@ -123,17 +158,17 @@
 
         <div class="footer__social">
           <h2 class="footer__heading">Social</h2>
-          <ul>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a></li>
-            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎨</span> Dribbble</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🐦</span> Twitter</a></li>
-            <li><a href="mailto:hello@aanyasharma.com"><span aria-hidden="true">✉️</span> Email</a></li>
+          <ul class="footer__social-icons">
+            <li><a href="https://linkedin.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
+            <li><a href="https://dribbble.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
+            <li><a href="https://twitter.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
+            <li><a href="mailto:hello@aanyasharma.com" class="icon-btn" aria-label="Email"><span aria-hidden="true">✉️</span></a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer__bottom">
-        <p>© 2026 Aanya Sharma — Built with curiosity and Cursor.</p>
+        <p>© 2026 Aanya Sharma — Built with curiosity and <span class="footer__heart" aria-hidden="true">♥</span> Cursor.</p>
       </div>
     </div>
   </footer>

@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var key = "aanya-theme";
+        var theme = localStorage.getItem(key);
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {}
+    })();
+  </script>
   <title>Selected Work | Aanya Sharma</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -30,12 +42,18 @@
 
     <!-- Page links — each <a> points to a different HTML file in this project -->
     <div class="nav__menu" id="nav-menu">
-      <ul class="nav__links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html" class="active">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <div class="nav__menu-inner">
+        <ul class="nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav__theme-toggle" type="button" aria-label="Switch to dark mode">
+          <span class="nav__theme-icon nav__theme-icon--light" aria-hidden="true">🌙</span>
+          <span class="nav__theme-icon nav__theme-icon--dark" aria-hidden="true">☀️</span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -44,15 +62,28 @@
     <p class="projects-header__subtitle">Six projects, three industries, one obsession: clarity.</p>
   </header>
 
+  <div class="tag-marquee" aria-hidden="true">
+    <div class="tag-marquee__track">
+      <div class="tag-marquee__row">
+        <span>Fintech</span><span>Edtech</span><span>Healthcare</span><span>B2B</span><span>A11y</span><span>Design Systems</span><span>Marketplace</span><span>Data Viz</span><span>Internal Tools</span><span>UX Writing</span>
+      </div>
+      <div class="tag-marquee__row">
+        <span>Fintech</span><span>Edtech</span><span>Healthcare</span><span>B2B</span><span>A11y</span><span>Design Systems</span><span>Marketplace</span><span>Data Viz</span><span>Internal Tools</span><span>UX Writing</span>
+      </div>
+    </div>
+  </div>
+
   <section class="projects-grid">
-    <article class="project-card">
-      <img
-        class="project-card__image"
-        src="https://placehold.co/640x360/4f46e5/ffffff?text=Razorpay+Checkout+2.0"
-        alt="Razorpay Checkout 2.0 project preview"
-        width="640"
-        height="360"
-      >
+    <article class="project-card reveal">
+      <div class="project-card__image-wrap">
+        <img
+          class="project-card__image"
+          src="https://placehold.co/640x360/4f46e5/ffffff?text=Razorpay+Checkout+2.0"
+          alt="Razorpay Checkout 2.0 project preview"
+          width="640"
+          height="360"
+        >
+      </div>
       <div class="project-card__body">
         <h3 class="project-card__title">Razorpay Checkout 2.0</h3>
         <p class="project-card__desc">Reducing payment drop-offs by 18%.</p>
@@ -65,14 +96,16 @@
       </div>
     </article>
 
-    <article class="project-card">
-      <img
-        class="project-card__image"
-        src="https://placehold.co/640x360/0ea5e9/ffffff?text=Byju%27s+Onboarding"
-        alt="Byju's Onboarding project preview"
-        width="640"
-        height="360"
-      >
+    <article class="project-card reveal">
+      <div class="project-card__image-wrap">
+        <img
+          class="project-card__image"
+          src="https://placehold.co/640x360/0ea5e9/ffffff?text=Byju%27s+Onboarding"
+          alt="Byju's Onboarding project preview"
+          width="640"
+          height="360"
+        >
+      </div>
       <div class="project-card__body">
         <h3 class="project-card__title">Byju's Onboarding</h3>
         <p class="project-card__desc">New-learner activation up 27%.</p>
@@ -85,14 +118,16 @@
       </div>
     </article>
 
-    <article class="project-card">
-      <img
-        class="project-card__image"
-        src="https://placehold.co/640x360/10b981/ffffff?text=Practo+Doctor+Chat"
-        alt="Practo Doctor Chat project preview"
-        width="640"
-        height="360"
-      >
+    <article class="project-card reveal">
+      <div class="project-card__image-wrap">
+        <img
+          class="project-card__image"
+          src="https://placehold.co/640x360/10b981/ffffff?text=Practo+Doctor+Chat"
+          alt="Practo Doctor Chat project preview"
+          width="640"
+          height="360"
+        >
+      </div>
       <div class="project-card__body">
         <h3 class="project-card__title">Practo Doctor Chat</h3>
         <p class="project-card__desc">HIPAA-friendly chat MVP.</p>
@@ -105,14 +140,16 @@
       </div>
     </article>
 
-    <article class="project-card">
-      <img
-        class="project-card__image"
-        src="https://placehold.co/640x360/f59e0b/ffffff?text=Zomato+Restaurant+Hub"
-        alt="Zomato Restaurant Hub project preview"
-        width="640"
-        height="360"
-      >
+    <article class="project-card reveal">
+      <div class="project-card__image-wrap">
+        <img
+          class="project-card__image"
+          src="https://placehold.co/640x360/f59e0b/ffffff?text=Zomato+Restaurant+Hub"
+          alt="Zomato Restaurant Hub project preview"
+          width="640"
+          height="360"
+        >
+      </div>
       <div class="project-card__body">
         <h3 class="project-card__title">Zomato Restaurant Hub</h3>
         <p class="project-card__desc">Self-serve menu manager.</p>
@@ -124,14 +161,16 @@
       </div>
     </article>
 
-    <article class="project-card">
-      <img
-        class="project-card__image"
-        src="https://placehold.co/640x360/ef4444/ffffff?text=Open+Banking+Dashboard"
-        alt="Open Banking Dashboard project preview"
-        width="640"
-        height="360"
-      >
+    <article class="project-card reveal">
+      <div class="project-card__image-wrap">
+        <img
+          class="project-card__image"
+          src="https://placehold.co/640x360/ef4444/ffffff?text=Open+Banking+Dashboard"
+          alt="Open Banking Dashboard project preview"
+          width="640"
+          height="360"
+        >
+      </div>
       <div class="project-card__body">
         <h3 class="project-card__title">Open Banking Dashboard</h3>
         <p class="project-card__desc">B2B analytics, dark mode first.</p>
@@ -143,14 +182,16 @@
       </div>
     </article>
 
-    <article class="project-card">
-      <img
-        class="project-card__image"
-        src="https://placehold.co/640x360/8b5cf6/ffffff?text=Accessibility+Audit+Toolkit"
-        alt="Accessibility Audit Toolkit project preview"
-        width="640"
-        height="360"
-      >
+    <article class="project-card reveal">
+      <div class="project-card__image-wrap">
+        <img
+          class="project-card__image"
+          src="https://placehold.co/640x360/8b5cf6/ffffff?text=Accessibility+Audit+Toolkit"
+          alt="Accessibility Audit Toolkit project preview"
+          width="640"
+          height="360"
+        >
+      </div>
       <div class="project-card__body">
         <h3 class="project-card__title">Accessibility Audit Toolkit</h3>
         <p class="project-card__desc">Internal tool, 4.2★.</p>
@@ -165,6 +206,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
+      <div class="footer__accent" aria-hidden="true"></div>
       <div class="footer__columns">
         <div class="footer__brand">
           <p class="footer__name">Aanya Sharma</p>
@@ -183,17 +225,17 @@
 
         <div class="footer__social">
           <h2 class="footer__heading">Social</h2>
-          <ul>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a></li>
-            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎨</span> Dribbble</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🐦</span> Twitter</a></li>
-            <li><a href="mailto:hello@aanyasharma.com"><span aria-hidden="true">✉️</span> Email</a></li>
+          <ul class="footer__social-icons">
+            <li><a href="https://linkedin.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
+            <li><a href="https://dribbble.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
+            <li><a href="https://twitter.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
+            <li><a href="mailto:hello@aanyasharma.com" class="icon-btn" aria-label="Email"><span aria-hidden="true">✉️</span></a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer__bottom">
-        <p>© 2026 Aanya Sharma — Built with curiosity and Cursor.</p>
+        <p>© 2026 Aanya Sharma — Built with curiosity and <span class="footer__heart" aria-hidden="true">♥</span> Cursor.</p>
       </div>
     </div>
   </footer>

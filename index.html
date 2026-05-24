@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var key = "aanya-theme";
+        var theme = localStorage.getItem(key);
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {}
+    })();
+  </script>
   <title>Aanya Sharma | UX Designer</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -30,12 +42,18 @@
 
     <!-- Page links — each <a> points to a different HTML file in this project -->
     <div class="nav__menu" id="nav-menu">
-      <ul class="nav__links">
-        <li><a href="index.html" class="active">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
+      <div class="nav__menu-inner">
+        <ul class="nav__links">
+          <li><a href="index.html" class="active">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <button class="nav__theme-toggle" type="button" aria-label="Switch to dark mode">
+          <span class="nav__theme-icon nav__theme-icon--light" aria-hidden="true">🌙</span>
+          <span class="nav__theme-icon nav__theme-icon--dark" aria-hidden="true">☀️</span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -43,7 +61,10 @@
     <p class="hero__eyebrow">PORTFOLIO 2026</p>
     <h1 class="hero__headline">I design products people actually enjoy using.</h1>
     <p class="hero__subheadline">Senior UX Designer with 5 years of experience in fintech, edtech and healthcare.</p>
-    <a href="projects.html" class="hero__cta">See My Work →</a>
+    <a href="projects.html" class="hero__cta btn-shine">See My Work →</a>
+    <div class="hero__scroll" aria-hidden="true">
+      <span class="hero__scroll-dot"></span>
+    </div>
   </section>
 
   <section class="skills">
@@ -52,42 +73,42 @@
 
     <div class="skills__grid">
       <!-- Card 1: User Research -->
-      <article class="skills__card">
+      <article class="skills__card reveal">
         <span class="skills__icon" aria-hidden="true">🎨</span>
         <h3 class="skills__name">User Research</h3>
         <p class="skills__description">Interviews, surveys and usability tests that uncover real user needs.</p>
       </article>
 
       <!-- Card 2: UI Design -->
-      <article class="skills__card">
+      <article class="skills__card reveal">
         <span class="skills__icon" aria-hidden="true">🖌️</span>
         <h3 class="skills__name">UI Design</h3>
         <p class="skills__description">Pixel-perfect interfaces built in Figma with reusable design systems.</p>
       </article>
 
       <!-- Card 3: Information Architecture -->
-      <article class="skills__card">
+      <article class="skills__card reveal">
         <span class="skills__icon" aria-hidden="true">🧭</span>
         <h3 class="skills__name">Information Architecture</h3>
         <p class="skills__description">Clear sitemaps and flows that make complex products feel simple.</p>
       </article>
 
       <!-- Card 4: Prototyping -->
-      <article class="skills__card">
+      <article class="skills__card reveal">
         <span class="skills__icon" aria-hidden="true">📐</span>
         <h3 class="skills__name">Prototyping</h3>
         <p class="skills__description">High-fidelity, clickable prototypes that validate ideas before a single line of code.</p>
       </article>
 
       <!-- Card 5: Accessibility -->
-      <article class="skills__card">
+      <article class="skills__card reveal">
         <span class="skills__icon" aria-hidden="true">♿</span>
         <h3 class="skills__name">Accessibility</h3>
         <p class="skills__description">WCAG-compliant designs that work for everyone, on every device.</p>
       </article>
 
       <!-- Card 6: Design Systems -->
-      <article class="skills__card">
+      <article class="skills__card reveal">
         <span class="skills__icon" aria-hidden="true">📊</span>
         <h3 class="skills__name">Design Systems</h3>
         <p class="skills__description">Scalable component libraries that keep teams shipping fast and consistently.</p>
@@ -97,6 +118,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
+      <div class="footer__accent" aria-hidden="true"></div>
       <div class="footer__columns">
         <div class="footer__brand">
           <p class="footer__name">Aanya Sharma</p>
@@ -115,17 +137,17 @@
 
         <div class="footer__social">
           <h2 class="footer__heading">Social</h2>
-          <ul>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a></li>
-            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎨</span> Dribbble</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🐦</span> Twitter</a></li>
-            <li><a href="mailto:hello@aanyasharma.com"><span aria-hidden="true">✉️</span> Email</a></li>
+          <ul class="footer__social-icons">
+            <li><a href="https://linkedin.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
+            <li><a href="https://dribbble.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
+            <li><a href="https://twitter.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
+            <li><a href="mailto:hello@aanyasharma.com" class="icon-btn" aria-label="Email"><span aria-hidden="true">✉️</span></a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer__bottom">
-        <p>© 2026 Aanya Sharma — Built with curiosity and Cursor.</p>
+        <p>© 2026 Aanya Sharma — Built with curiosity and <span class="footer__heart" aria-hidden="true">♥</span> Cursor.</p>
       </div>
     </div>
   </footer>

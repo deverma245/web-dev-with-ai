@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var key = "aanya-theme";
+        var theme = localStorage.getItem(key);
+        if (!theme) {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      } catch (error) {}
+    })();
+  </script>
   <title>Contact | Aanya Sharma</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -30,12 +42,18 @@
 
     <!-- Page links — each <a> points to a different HTML file in this project -->
     <div class="nav__menu" id="nav-menu">
-      <ul class="nav__links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="projects.html">Projects</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
-      </ul>
+      <div class="nav__menu-inner">
+        <ul class="nav__links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        <button class="nav__theme-toggle" type="button" aria-label="Switch to dark mode">
+          <span class="nav__theme-icon nav__theme-icon--light" aria-hidden="true">🌙</span>
+          <span class="nav__theme-icon nav__theme-icon--dark" aria-hidden="true">☀️</span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -45,7 +63,7 @@
   </header>
 
   <section class="contact-section">
-    <aside class="contact-card">
+    <aside class="contact-card reveal">
       <h2 class="contact-card__heading">Get in touch</h2>
 
       <div class="contact-card__item">
@@ -60,28 +78,27 @@
 
       <div class="contact-card__social">
         <span class="contact-card__label">Social</span>
-        <ul class="contact-card__links">
-          <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-          <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer">Dribbble</a></li>
-          <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+        <ul class="contact-card__social-icons">
+          <li><a href="https://linkedin.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
+          <li><a href="https://dribbble.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
+          <li><a href="https://twitter.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
         </ul>
       </div>
     </aside>
 
-    <div class="contact-form-wrapper">
+    <div class="contact-form-wrapper reveal">
       <form id="contact-form" class="contact-form">
-        <div class="contact-form__field">
+        <div class="contact-form__field contact-form__field--float">
+          <input type="text" id="full-name" name="fullName" placeholder=" " required>
           <label for="full-name">Full Name</label>
-          <input type="text" id="full-name" name="fullName" required>
         </div>
 
-        <div class="contact-form__field">
+        <div class="contact-form__field contact-form__field--float">
+          <input type="email" id="email" name="email" placeholder=" " required>
           <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" required>
         </div>
 
-        <div class="contact-form__field">
-          <label for="subject">Subject</label>
+        <div class="contact-form__field contact-form__field--float contact-form__field--select">
           <select id="subject" name="subject" required>
             <option value="" disabled selected>Select a subject</option>
             <option value="Project Inquiry">Project Inquiry</option>
@@ -90,14 +107,15 @@
             <option value="Speaking">Speaking</option>
             <option value="Other">Other</option>
           </select>
+          <label for="subject">Subject</label>
         </div>
 
-        <div class="contact-form__field">
+        <div class="contact-form__field contact-form__field--float">
+          <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
           <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
         </div>
 
-        <button type="submit" class="contact-form__submit">Send Message</button>
+        <button type="submit" class="contact-form__submit btn-shine">Send Message</button>
       </form>
 
       <p id="contact-success" class="contact-form__success" hidden>
@@ -108,6 +126,7 @@
 
   <footer class="footer">
     <div class="footer__inner">
+      <div class="footer__accent" aria-hidden="true"></div>
       <div class="footer__columns">
         <div class="footer__brand">
           <p class="footer__name">Aanya Sharma</p>
@@ -126,17 +145,17 @@
 
         <div class="footer__social">
           <h2 class="footer__heading">Social</h2>
-          <ul>
-            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a></li>
-            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎨</span> Dribbble</a></li>
-            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🐦</span> Twitter</a></li>
-            <li><a href="mailto:hello@aanyasharma.com"><span aria-hidden="true">✉️</span> Email</a></li>
+          <ul class="footer__social-icons">
+            <li><a href="https://linkedin.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
+            <li><a href="https://dribbble.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
+            <li><a href="https://twitter.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
+            <li><a href="mailto:hello@aanyasharma.com" class="icon-btn" aria-label="Email"><span aria-hidden="true">✉️</span></a></li>
           </ul>
         </div>
       </div>
 
       <div class="footer__bottom">
-        <p>© 2026 Aanya Sharma — Built with curiosity and Cursor.</p>
+        <p>© 2026 Aanya Sharma — Built with curiosity and <span class="footer__heart" aria-hidden="true">♥</span> Cursor.</p>
       </div>
     </div>
   </footer>
