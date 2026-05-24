@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Aanya | Aanya Sharma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!--
+    NAVIGATION BAR
+    This <nav> sits at the top of every page and helps visitors jump between sections.
+    It uses two inner containers: one for the brand name (left) and one for page links (right).
+  -->
+  <nav class="nav">
+    <!-- Brand name — acts as a "home" label and identifies the site owner -->
+    <a href="index.html" class="nav__brand">Aanya Sharma</a>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Toggle navigation"
+    >
+      <span class="nav__toggle-icon nav__toggle-icon--open" aria-hidden="true">☰</span>
+      <span class="nav__toggle-icon nav__toggle-icon--close" aria-hidden="true">✕</span>
+    </button>
+
+    <!-- Page links — each <a> points to a different HTML file in this project -->
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="about-header">
+    <h1 class="about-header__title">About Aanya</h1>
+    <p class="about-header__subtitle">Designer. Researcher. Coffee-driven optimist.</p>
+  </header>
+
+  <section class="about-bio">
+    <div class="about-bio__grid">
+      <div class="about-bio__image">
+        <img
+          src="https://placehold.co/400x400/4f46e5/ffffff?text=Aanya"
+          alt="Portrait of Aanya Sharma"
+          width="400"
+          height="400"
+        >
+      </div>
+
+      <div class="about-bio__text">
+        <p>I design products at the intersection of business goals and human emotion. My happiest projects are the ones where a measurable metric (conversion, retention, time-on-task) moves <em>and</em> users send unsolicited thank-you messages.</p>
+
+        <p>Before design, I trained as a psychology major — which still shows up in how I run research. I believe the best interviews feel like good conversations, not interrogations.</p>
+
+        <p>When I'm not in Figma, you'll find me sketching in cafés, running ultra-marathons very slowly, or trying (and failing) to keep my plants alive.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-timeline">
+    <h2 class="about-timeline__heading">Career Timeline</h2>
+
+    <ol class="about-timeline__list">
+      <li class="about-timeline__entry">
+        <span class="about-timeline__year">2024</span>
+        <div class="about-timeline__content">
+          <p class="about-timeline__role">Senior UX Designer, Razorpay</p>
+          <p class="about-timeline__desc">Leading checkout redesign for 8M users.</p>
+        </div>
+      </li>
+
+      <li class="about-timeline__entry">
+        <span class="about-timeline__year">2022</span>
+        <div class="about-timeline__content">
+          <p class="about-timeline__role">UX Designer, Byju's</p>
+          <p class="about-timeline__desc">Owned learner onboarding for the K-12 app.</p>
+        </div>
+      </li>
+
+      <li class="about-timeline__entry">
+        <span class="about-timeline__year">2021</span>
+        <div class="about-timeline__content">
+          <p class="about-timeline__role">Product Designer, Practo</p>
+          <p class="about-timeline__desc">Designed doctor-patient chat MVP.</p>
+        </div>
+      </li>
+
+      <li class="about-timeline__entry">
+        <span class="about-timeline__year">2020</span>
+        <div class="about-timeline__content">
+          <p class="about-timeline__role">Design Intern, Zomato</p>
+          <p class="about-timeline__desc">Reshaped restaurant onboarding flow.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__columns">
+        <div class="footer__brand">
+          <p class="footer__name">Aanya Sharma</p>
+          <p class="footer__tagline">Designing calm products for noisy industries.</p>
+        </div>
+
+        <div class="footer__links">
+          <h2 class="footer__heading">Quick Links</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__social">
+          <h2 class="footer__heading">Social</h2>
+          <ul>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a></li>
+            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎨</span> Dribbble</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🐦</span> Twitter</a></li>
+            <li><a href="mailto:hello@aanyasharma.com"><span aria-hidden="true">✉️</span> Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 Aanya Sharma — Built with curiosity and Cursor.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

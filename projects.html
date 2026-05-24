@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Selected Work | Aanya Sharma</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!--
+    NAVIGATION BAR
+    This <nav> sits at the top of every page and helps visitors jump between sections.
+    It uses two inner containers: one for the brand name (left) and one for page links (right).
+  -->
+  <nav class="nav">
+    <!-- Brand name — acts as a "home" label and identifies the site owner -->
+    <a href="index.html" class="nav__brand">Aanya Sharma</a>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="nav-menu"
+      aria-label="Toggle navigation"
+    >
+      <span class="nav__toggle-icon nav__toggle-icon--open" aria-hidden="true">☰</span>
+      <span class="nav__toggle-icon nav__toggle-icon--close" aria-hidden="true">✕</span>
+    </button>
+
+    <!-- Page links — each <a> points to a different HTML file in this project -->
+    <div class="nav__menu" id="nav-menu">
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="projects-header">
+    <h1 class="projects-header__title">Selected Work</h1>
+    <p class="projects-header__subtitle">Six projects, three industries, one obsession: clarity.</p>
+  </header>
+
+  <section class="projects-grid">
+    <article class="project-card">
+      <img
+        class="project-card__image"
+        src="https://placehold.co/640x360/4f46e5/ffffff?text=Razorpay+Checkout+2.0"
+        alt="Razorpay Checkout 2.0 project preview"
+        width="640"
+        height="360"
+      >
+      <div class="project-card__body">
+        <h3 class="project-card__title">Razorpay Checkout 2.0</h3>
+        <p class="project-card__desc">Reducing payment drop-offs by 18%.</p>
+        <ul class="project-card__tags">
+          <li>Fintech</li>
+          <li>Research</li>
+          <li>Figma</li>
+        </ul>
+        <a href="#" class="project-card__link">View Case Study →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <img
+        class="project-card__image"
+        src="https://placehold.co/640x360/0ea5e9/ffffff?text=Byju%27s+Onboarding"
+        alt="Byju's Onboarding project preview"
+        width="640"
+        height="360"
+      >
+      <div class="project-card__body">
+        <h3 class="project-card__title">Byju's Onboarding</h3>
+        <p class="project-card__desc">New-learner activation up 27%.</p>
+        <ul class="project-card__tags">
+          <li>Edtech</li>
+          <li>UX Writing</li>
+          <li>Prototyping</li>
+        </ul>
+        <a href="#" class="project-card__link">View Case Study →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <img
+        class="project-card__image"
+        src="https://placehold.co/640x360/10b981/ffffff?text=Practo+Doctor+Chat"
+        alt="Practo Doctor Chat project preview"
+        width="640"
+        height="360"
+      >
+      <div class="project-card__body">
+        <h3 class="project-card__title">Practo Doctor Chat</h3>
+        <p class="project-card__desc">HIPAA-friendly chat MVP.</p>
+        <ul class="project-card__tags">
+          <li>Healthcare</li>
+          <li>IA</li>
+          <li>Wireframing</li>
+        </ul>
+        <a href="#" class="project-card__link">View Case Study →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <img
+        class="project-card__image"
+        src="https://placehold.co/640x360/f59e0b/ffffff?text=Zomato+Restaurant+Hub"
+        alt="Zomato Restaurant Hub project preview"
+        width="640"
+        height="360"
+      >
+      <div class="project-card__body">
+        <h3 class="project-card__title">Zomato Restaurant Hub</h3>
+        <p class="project-card__desc">Self-serve menu manager.</p>
+        <ul class="project-card__tags">
+          <li>Marketplace</li>
+          <li>Design System</li>
+        </ul>
+        <a href="#" class="project-card__link">View Case Study →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <img
+        class="project-card__image"
+        src="https://placehold.co/640x360/ef4444/ffffff?text=Open+Banking+Dashboard"
+        alt="Open Banking Dashboard project preview"
+        width="640"
+        height="360"
+      >
+      <div class="project-card__body">
+        <h3 class="project-card__title">Open Banking Dashboard</h3>
+        <p class="project-card__desc">B2B analytics, dark mode first.</p>
+        <ul class="project-card__tags">
+          <li>B2B</li>
+          <li>Data Viz</li>
+        </ul>
+        <a href="#" class="project-card__link">View Case Study →</a>
+      </div>
+    </article>
+
+    <article class="project-card">
+      <img
+        class="project-card__image"
+        src="https://placehold.co/640x360/8b5cf6/ffffff?text=Accessibility+Audit+Toolkit"
+        alt="Accessibility Audit Toolkit project preview"
+        width="640"
+        height="360"
+      >
+      <div class="project-card__body">
+        <h3 class="project-card__title">Accessibility Audit Toolkit</h3>
+        <p class="project-card__desc">Internal tool, 4.2★.</p>
+        <ul class="project-card__tags">
+          <li>A11y</li>
+          <li>Internal Tools</li>
+        </ul>
+        <a href="#" class="project-card__link">View Case Study →</a>
+      </div>
+    </article>
+  </section>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__columns">
+        <div class="footer__brand">
+          <p class="footer__name">Aanya Sharma</p>
+          <p class="footer__tagline">Designing calm products for noisy industries.</p>
+        </div>
+
+        <div class="footer__links">
+          <h2 class="footer__heading">Quick Links</h2>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__social">
+          <h2 class="footer__heading">Social</h2>
+          <ul>
+            <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">💼</span> LinkedIn</a></li>
+            <li><a href="https://dribbble.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🎨</span> Dribbble</a></li>
+            <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">🐦</span> Twitter</a></li>
+            <li><a href="mailto:hello@aanyasharma.com"><span aria-hidden="true">✉️</span> Email</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <p>© 2026 Aanya Sharma — Built with curiosity and Cursor.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
