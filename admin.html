@@ -15,7 +15,7 @@
       } catch (error) {}
     })();
   </script>
-  <title>Contact | Aanya Sharma</title>
+  <title>Admin Inbox | Aanya Sharma</title>
   <link rel="stylesheet" href="styles.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -48,7 +48,8 @@
           <li><a href="index.html">Home</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="admin.html" class="active">Admin</a></li>
         </ul>
         <button class="nav__theme-toggle" type="button" aria-label="Switch to dark mode">
           <span class="nav__theme-icon nav__theme-icon--light" aria-hidden="true">🌙</span>
@@ -58,71 +59,22 @@
     </div>
   </nav>
 
-  <header class="contact-header">
-    <h1 class="contact-header__title">Let's build something good.</h1>
-    <p class="contact-header__subtitle">Project enquiries, mentorship, or just a chai-chat. I reply within 24 hours.</p>
+  <header class="admin-header">
+    <h1 class="admin-header__title">Inbox</h1>
+    <p class="admin-header__subtitle">All contact-form messages, newest first.</p>
   </header>
 
-  <section class="contact-section">
-    <aside class="contact-card reveal">
-      <h2 class="contact-card__heading">Get in touch</h2>
-
-      <div class="contact-card__item">
-        <span class="contact-card__label">Email</span>
-        <a href="mailto:hello@aanyasharma.com" class="contact-card__value">hello@aanyasharma.com</a>
-      </div>
-
-      <div class="contact-card__item">
-        <span class="contact-card__label">Location</span>
-        <p class="contact-card__value">Bengaluru, India</p>
-      </div>
-
-      <div class="contact-card__social">
-        <span class="contact-card__label">Social</span>
-        <ul class="contact-card__social-icons">
-          <li><a href="https://linkedin.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><span aria-hidden="true">💼</span></a></li>
-          <li><a href="https://dribbble.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Dribbble"><span aria-hidden="true">🎨</span></a></li>
-          <li><a href="https://twitter.com" class="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><span aria-hidden="true">🐦</span></a></li>
-        </ul>
-      </div>
-    </aside>
-
-    <div class="contact-form-wrapper reveal">
-      <form id="contact-form" class="contact-form">
-        <div class="contact-form__field contact-form__field--float">
-          <input type="text" id="full-name" name="fullName" placeholder=" " required>
-          <label for="full-name">Full Name</label>
-        </div>
-
-        <div class="contact-form__field contact-form__field--float">
-          <input type="email" id="email" name="email" placeholder=" " required>
-          <label for="email">Email Address</label>
-        </div>
-
-        <div class="contact-form__field contact-form__field--float contact-form__field--select">
-          <select id="subject" name="subject" required>
-            <option value="" disabled selected>Select a subject</option>
-            <option value="Project Inquiry">Project Inquiry</option>
-            <option value="Collaboration">Collaboration</option>
-            <option value="Mentorship">Mentorship</option>
-            <option value="Speaking">Speaking</option>
-            <option value="Other">Other</option>
-          </select>
-          <label for="subject">Subject</label>
-        </div>
-
-        <div class="contact-form__field contact-form__field--float">
-          <textarea id="message" name="message" rows="5" placeholder=" " required></textarea>
-          <label for="message">Message</label>
-        </div>
-
-        <button type="submit" class="contact-form__submit btn-shine">Send Message</button>
-      </form>
-
-      <p id="contact-success" class="contact-form__success" hidden>
-        ✅ Thanks! Your message was sent. I'll reply within 24 hours.
-      </p>
+  <section class="admin-section">
+    <div class="admin-toolbar">
+      <p id="admin-count" class="admin-toolbar__count">📬 0 messages</p>
+      <label class="admin-toolbar__filter">
+        <input type="checkbox" id="admin-unread-only" class="admin-toolbar__checkbox">
+        <span class="admin-toolbar__filter-ui" aria-hidden="true"></span>
+        Unread only
+      </label>
     </div>
+
+    <div id="admin-inbox-grid" class="admin-grid"></div>
   </section>
 
   <footer class="footer">

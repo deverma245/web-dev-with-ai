@@ -1738,3 +1738,218 @@ body,
     margin-bottom: 32px;
   }
 }
+
+/* === ADMIN INBOX === */
+
+.admin-header {
+  padding: 64px 24px 32px;
+  text-align: center;
+}
+
+.admin-header__title {
+  margin: 0 0 12px;
+  color: var(--text);
+}
+
+.admin-header__subtitle {
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-muted);
+}
+
+.admin-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+.admin-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.admin-toolbar__count {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.admin-toolbar__filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+}
+
+.admin-toolbar__checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.admin-toolbar__filter-ui {
+  position: relative;
+  width: 44px;
+  height: 24px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  transition: background var(--dur-fast) var(--ease);
+}
+
+.admin-toolbar__filter-ui::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--surface);
+  border-radius: 50%;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-fast) var(--ease);
+}
+
+.admin-toolbar__checkbox:checked + .admin-toolbar__filter-ui {
+  background: var(--primary);
+  border-color: transparent;
+}
+
+.admin-toolbar__checkbox:checked + .admin-toolbar__filter-ui::after {
+  transform: translateX(20px);
+}
+
+.admin-toolbar__checkbox:focus-visible + .admin-toolbar__filter-ui {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+.admin-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.admin-grid--unread-only .inbox-card.is-read {
+  display: none;
+}
+
+.inbox-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 4px solid #a78bfa;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  transition: opacity var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+
+.inbox-card.is-read {
+  background: #f3f4f6;
+  border-left-color: #d1d5db;
+  opacity: 0.6;
+}
+
+:root[data-theme="dark"] .inbox-card.is-read {
+  background: var(--surface-2);
+  border-left-color: color-mix(in srgb, var(--text-muted) 40%, transparent);
+}
+
+.inbox-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.inbox-card__subject {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.inbox-card__time {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.inbox-card__sender {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.inbox-card__body {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--text);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
+}
+
+.inbox-card__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.inbox-card__mark-read {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: inherit;
+  color: #ffffff;
+  background: var(--grad-hero);
+  border: none;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+
+.inbox-card__mark-read:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.admin-grid__empty,
+.admin-grid__error {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 32px;
+  text-align: center;
+  font-size: 16px;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px dashed var(--border);
+  border-radius: var(--radius-md);
+}
+
+.admin-grid__error {
+  color: var(--danger);
+}

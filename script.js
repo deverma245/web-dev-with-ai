@@ -173,7 +173,20 @@ const contactForm = document.querySelector("#contact-form");
 if (contactForm) {
   const successMessage = document.querySelector("#contact-success");
 
-  contactForm.addEventListener("submit", (event) => {
+  // Create a hidden error message we can show if the database insert fails.
+  let errorMessage = document.querySelector("#contact-error");
+  if (!errorMessage) {
+    errorMessage = document.createElement("p");
+    errorMessage.id = "contact-error";
+    errorMessage.className = "contact-form__error";
+    errorMessage.hidden = true;
+    errorMessage.style.color = "#dc2626";
+    errorMessage.style.textAlign = "center";
+    errorMessage.style.padding = "16px";
+    successMessage.parentNode.insertBefore(errorMessage, successMessage);
+  }
+
+  contactForm.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     if (!contactForm.checkValidity()) {
@@ -181,11 +194,37 @@ if (contactForm) {
       return;
     }
 
+    // Clear any previous error before trying a new submission.
+    errorMessage.hidden = true;
+
     const formData = new FormData(contactForm);
     const data = Object.fromEntries(formData.entries());
 
     console.log(data);
 
+    // Read the four form fields (fullName maps to the full_name database column).
+    const full_name = data.fullName;
+    const email = data.email;
+    const subject = data.subject;
+    const message = data.message;
+
+    // Send the submission to Supabase's "form" table and wait for the response.
+    const response = await supabaseClient.from("form").insert([{ full_name, email, subject, message }]);
+
+    // Log the full response object so we can debug in the browser console.
+    console.log(response);
+
+    if (response.error) {
+      // Insert failed — keep the form visible and show a red error message.
+      errorMessage.textContent = "Something went wrong. Please try again.";
+      errorMessage.hidden = false;
+      successMessage.hidden = true;
+      contactForm.hidden = false;
+      return;
+    }
+
+    // Insert succeeded — hide the form, show the thank-you message, and clear fields.
+    contactForm.reset();
     contactForm.hidden = true;
     successMessage.hidden = false;
   });
@@ -208,3 +247,159 @@ if (nav && navToggle && navMenu) {
     });
   });
 }
+
+// === ADMIN INBOX (only runs on admin.html) ===
+(function initAdminInbox() {
+  const inboxGrid = document.querySelector("#admin-inbox-grid");
+
+  // Bail out quietly on every other page — this block only belongs on the admin dashboard.
+  if (!inboxGrid) {
+    return;
+  }
+
+  const countEl = document.querySelector("#admin-count");
+  const unreadToggle = document.querySelector("#admin-unread-only");
+
+  // Turn a timestamp into a friendly relative string like "2 hours ago".
+  function timeAgo(dateInput) {
+    const date = new Date(dateInput);
+    const now = new Date();
+    const seconds = Math.floor((now - date) / 1000);
+
+    if (seconds < 60) {
+      return "just now";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    if (minutes < 60) {
+      return `${minutes} minute${minutes === 1 ? "" : "s"} ago`;
+    }
+
+    const hours = Math.floor(minutes / 60);
+    if (hours < 24) {
+      return `${hours} hour${hours === 1 ? "" : "s"} ago`;
+    }
+
+    const days = Math.floor(hours / 24);
+    if (days < 7) {
+      return `${days} day${days === 1 ? "" : "s"} ago`;
+    }
+
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  }
+
+  // Build one message card from a single database row.
+  function createInboxCard(row) {
+    const card = document.createElement("article");
+    card.className = "inbox-card";
+    if (row.is_read) {
+      card.classList.add("is-read");
+    }
+    card.dataset.id = String(row.id);
+
+    const topRow = document.createElement("div");
+    topRow.className = "inbox-card__top";
+
+    const subject = document.createElement("h3");
+    subject.className = "inbox-card__subject";
+    subject.textContent = row.subject;
+
+    const time = document.createElement("time");
+    time.className = "inbox-card__time";
+    time.dateTime = row.created_at;
+    time.textContent = timeAgo(row.created_at);
+
+    topRow.append(subject, time);
+
+    const sender = document.createElement("p");
+    sender.className = "inbox-card__sender";
+    sender.textContent = `${row.full_name} · ${row.email}`;
+
+    const body = document.createElement("p");
+    body.className = "inbox-card__body";
+    body.textContent = row.message;
+
+    const actions = document.createElement("div");
+    actions.className = "inbox-card__actions";
+
+    // Unread messages get a "Mark as Read" button; read ones do not.
+    if (!row.is_read) {
+      const markReadBtn = document.createElement("button");
+      markReadBtn.type = "button";
+      markReadBtn.className = "inbox-card__mark-read btn-shine";
+      markReadBtn.textContent = "Mark as Read";
+      markReadBtn.addEventListener("click", () => markAsRead(row.id, card, markReadBtn));
+      actions.append(markReadBtn);
+    }
+
+    card.append(topRow, sender, body, actions);
+    return card;
+  }
+
+  // Ask Supabase to set is_read = true for one row, then restyle that card locally.
+  async function markAsRead(id, card, button) {
+    button.disabled = true;
+
+    const response = await supabaseClient.from("form").update({ is_read: true }).eq("id", id);
+
+    if (response.error) {
+      button.disabled = false;
+      console.log(response);
+      return;
+    }
+
+    card.classList.add("is-read");
+    button.remove();
+  }
+
+  // Pull every submission from the "form" table and paint the grid.
+  async function loadInbox() {
+    const response = await supabaseClient
+      .from("form")
+      .select("*")
+      .order("created_at", { ascending: false });
+
+    console.log(response);
+
+    inboxGrid.innerHTML = "";
+
+    if (response.error) {
+      const errorMsg = document.createElement("p");
+      errorMsg.className = "admin-grid__error";
+      errorMsg.textContent = "Could not load messages. Check the console for details.";
+      inboxGrid.append(errorMsg);
+      return;
+    }
+
+    const rows = response.data || [];
+
+    if (countEl) {
+      countEl.textContent = `📬 ${rows.length} message${rows.length === 1 ? "" : "s"}`;
+    }
+
+    if (!rows.length) {
+      const emptyMsg = document.createElement("p");
+      emptyMsg.className = "admin-grid__empty";
+      emptyMsg.textContent = "No messages yet.";
+      inboxGrid.append(emptyMsg);
+      return;
+    }
+
+    rows.forEach((row) => {
+      inboxGrid.append(createInboxCard(row));
+    });
+  }
+
+  // When "Unread only" is checked, hide cards that already have the is-read class.
+  if (unreadToggle) {
+    unreadToggle.addEventListener("change", () => {
+      inboxGrid.classList.toggle("admin-grid--unread-only", unreadToggle.checked);
+    });
+  }
+
+  loadInbox();
+})();
